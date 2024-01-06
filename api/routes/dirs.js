@@ -22,12 +22,13 @@ router.post('/', function(req, res, next) {
     };
     link = req.body.link;
     if (link != undefined){
-        response.names = ["one", "two", "three"];
-        response.links = ["/" + link + "/one", "/" + link + "/two", "/" + link + "/three"]
+        response.names = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+        response.links = ["/" + link + "/one", "/" + link + "/two", "/" + link + "/three", "/" + link + "/four",
+         "/" + link + "/five", "/" + link + "/six", "/" + link + "/seven", "/" + link + "/eight", "/" + link + "/nine", "/" + link + "/ten"]
     }
     else{
-        response.names = ["one", "two", "three"];
-        response.links = ["/one", "/two", "/three"]
+        response.names = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+        response.links = ["/one", "/two", "/three", "/four", "/five", "/six", "/seven", "/eight", "/nine", "/ten"]
     }
     res.json(response)
 });

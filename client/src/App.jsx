@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import {useState, useEffect} from 'react';
 
@@ -7,10 +5,19 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import ContentNotFound from './components/ContentNotFound';
+import { ThemeProvider } from '@emotion/react';
+import { CssBaseline, createTheme } from '@mui/material';
+
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 async function fetch_data(request){
-  let url = "http://localhost:9000/dirs/";
   //fetch from server and get the response
+  let url = process.env.REACT_APP_API_CONNECTION
   const response = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
@@ -52,11 +59,14 @@ console.log(response);
   if (response.names != undefined){
     if (response.file == null){
       return (
-        <div>
-        <Header />
-        <Main names={response.names} links={response.links}/>
-        <Footer />
-        </div>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div style={{minHeight:'100vh', position:'relative'}}>
+            <Header />
+            <Main names={response.names} links={response.links}/>
+            <Footer />
+          </div>
+        </ThemeProvider>
       );
     }
   }
